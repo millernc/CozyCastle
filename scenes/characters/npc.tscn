@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cvm4hmchn01dq"]
+
+[ext_resource type="Script" uid="uid://dxebii3uf6ctu" path="res://scripts/characters/NPC.cs" id="1_ceaqc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qyh0"]
+size = Vector2(24, 40)
+
+[node name="NPC" type="StaticBody2D" unique_id=1289171748]
+z_index = 1
+script = ExtResource("1_ceaqc")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2038016888]
+color = Color(0.57937783, 0.41000533, 3.85046e-07, 1)
+polygon = PackedVector2Array(-184, -32, -184, -16, -176, -16, -176, 8, -168, 8, -168, -16, -160, -16, -160, -32)
+uv = PackedVector2Array(-184, -32, -184, -16, -176, -16, -176, 8, -168, 8, -168, -16, -160, -16, -160, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1422411886]
+position = Vector2(-172, -12)
+shape = SubResource("RectangleShape2D_7qyh0")

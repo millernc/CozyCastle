@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://ot0tjw7u6ugb"]
+
+[ext_resource type="Script" uid="uid://bagfql8qny4fv" path="res://scripts/player/Player.cs" id="1_rp718"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spd7i"]
+size = Vector2(20, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(35, 42)
+
+[node name="Player" type="CharacterBody2D" unique_id=2120755896]
+z_index = 1
+script = ExtResource("1_rp718")
+
+[node name="Body" type="Polygon2D" parent="." unique_id=625879523]
+position = Vector2(687, 325)
+polygon = PackedVector2Array(-184, -32, -184, 0, -160, 0, -160, -32)
+uv = PackedVector2Array(-184, -32, -184, 0, -160, 0, -160, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=770158397]
+position = Vector2(514, 308)
+shape = SubResource("RectangleShape2D_spd7i")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1319786039]
+position = Vector2(515, 312)
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=2054095927]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=104055336]
+position = Vector2(515.5, 309)
+shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="InteractionPrompt" type="Label" parent="." unique_id=422926114]
+visible = false
+offset_left = 487.0
+offset_top = 274.0
+offset_right = 527.0
+offset_bottom = 297.0
+theme_override_font_sizes/font_size = 20
+text = "E"

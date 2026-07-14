@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cohjlqyh5ieuu"]
+
+[ext_resource type="PackedScene" uid="uid://dn7i52s07k3wa" path="res://scenes/objects/door.tscn" id="1_l0q6c"]
+[ext_resource type="PackedScene" uid="uid://oylf72cpwn8q" path="res://scenes/objects/lamp.tscn" id="1_ofpqt"]
+[ext_resource type="PackedScene" uid="uid://b2nygrit0f6yc" path="res://scenes/objects/interactable_object.tscn" id="2_l0q6c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spd7i"]
+size = Vector2(599.5, 100.5)
+
+[node name="Room" type="Node2D" unique_id=2133616528]
+
+[node name="Door" parent="." unique_id=1669242904 instance=ExtResource("1_l0q6c")]
+position = Vector2(-83, 0)
+TargetSpawnName = "SpawnFromSecondRoom"
+TargetScenePath = "uid://mh6pd5siwe3h"
+
+[node name="Lamp" parent="." unique_id=1785236602 instance=ExtResource("1_ofpqt")]
+position = Vector2(189, 249)
+
+[node name="Bookshelf" parent="." unique_id=2137418091 instance=ExtResource("2_l0q6c")]
+z_index = 1
+position = Vector2(517.56134, 322.0902)
+PromptText = "Read"
+InteractionMessage = "A tiny bookshelf full of questionable programming books."
+
+[node name="Table" parent="." unique_id=1725109312 instance=ExtResource("2_l0q6c")]
+z_index = 1
+position = Vector2(551.561, 381.09)
+InteractionMessage = "The table has absolutely nothing useful on it."
+
+[node name="SaxophoneCase" parent="." unique_id=80231701 instance=ExtResource("2_l0q6c")]
+z_index = 1
+position = Vector2(502.561, 227.09)
+InteractionMessage = "The saxophone case is closed."
+
+[node name="Floor" type="Polygon2D" parent="." unique_id=192640885]
+position = Vector2(0, -2)
+color = Color(0, 0.9276741, 0.28837875, 1)
+polygon = PackedVector2Array(250, 150, 850, 150, 1000, 600, 100, 600)
+uv = PackedVector2Array(45, 52, -8.5, -56, -232.5, -54.5, -268, 48)
+
+[node name="BackWall" type="Polygon2D" parent="." unique_id=2127224506]
+color = Color(0.6690202, 1, 0.68520176, 1)
+polygon = PackedVector2Array(250, 50, 850, 50, 850, 150, 250, 150)
+
+[node name="LeftWall" type="Polygon2D" parent="." unique_id=1582728467]
+color = Color(0.6690202, 1, 0.68520176, 1)
+polygon = PackedVector2Array(100, 600, 250, 150, 250, 50, 100, 450)
+
+[node name="BackWallCollision" type="StaticBody2D" parent="." unique_id=1248688858]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackWallCollision" unique_id=382306939]
+position = Vector2(549.25, 99.25)
+shape = SubResource("RectangleShape2D_spd7i")
+
+[node name="SpawnFromFirstRoom" type="Marker2D" parent="." unique_id=282392257]
+position = Vector2(25, 34)
