@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://wojufo44yrel"]
+
+[ext_resource type="Script" uid="uid://c1gxsuspccbvn" path="res://scripts/inventory/ItemData.cs" id="1_hpaic"]
+
+[resource]
+script = ExtResource("1_hpaic")
+Id = "apple"
+DisplayName = "Apple"
+Description = "A crisp red apple."
+MaxStackSize = 10
+metadata/_custom_type_script = "uid://c1gxsuspccbvn"

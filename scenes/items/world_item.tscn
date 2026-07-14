@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cvekvdfo1fi0f"]
+
+[ext_resource type="Script" uid="uid://tey3ur5su3ul" path="res://scripts/items/WorldItem.cs" id="1_yrq7p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spd7i"]
+size = Vector2(23, 23)
+
+[node name="WorldItem" type="StaticBody2D" unique_id=1000495308]
+z_index = 1
+collision_layer = 3
+script = ExtResource("1_yrq7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358992550]
+position = Vector2(-180.5, -12.5)
+shape = SubResource("RectangleShape2D_spd7i")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1707872689]
+color = Color(1, 0, 1, 1)
+polygon = PackedVector2Array(-192, -24, -192, 0, -168, 0, -168, -24)
+uv = PackedVector2Array(-192, -24, -192, 0, -168, 0, -168, -24)

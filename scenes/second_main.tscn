@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cohjlqyh5ieuu" path="res://scenes/rooms/second_room.tscn" id="1_0i0dd"]
 [ext_resource type="Script" uid="uid://mqrg6lbywgmp" path="res://scripts/Main.cs" id="1_xjhtx"]
 [ext_resource type="PackedScene" uid="uid://ot0tjw7u6ugb" path="res://scenes/characters/player.tscn" id="2_5177e"]
+[ext_resource type="Resource" uid="uid://wojufo44yrel" path="res://data/items/apple.tres" id="3_f0gxm"]
 
 [node name="SecondMain" type="Node2D" unique_id=1741444979]
 script = ExtResource("1_xjhtx")
@@ -10,6 +11,7 @@ script = ExtResource("1_xjhtx")
 [node name="World" type="Node2D" parent="." unique_id=981309420]
 
 [node name="Player" parent="World" unique_id=2120755896 instance=ExtResource("2_5177e")]
+DebugItem = ExtResource("3_f0gxm")
 
 [node name="CurrentRoom" parent="World" unique_id=2133616528 instance=ExtResource("1_0i0dd")]
 

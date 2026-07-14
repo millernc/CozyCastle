@@ -5,18 +5,23 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public float Speed { get; set; } = 220.0f;
 
+	[Export]
+	public ItemData DebugItem { get; set; }
+
 	public FacingDirection Facing { get; private set; } = FacingDirection.Down;
 	
 	private Main _main;
 	private Area2D _interactionArea;
 	private Label _interactionPrompt;
 	private IInteractable _currentInteractable;
+	private GameSession _gameSession;
 	
 	public override void _Ready()
 	{
 		_main = GetTree().CurrentScene as Main;
 		_interactionArea = GetNode<Area2D>("InteractionArea");
 		_interactionPrompt = GetNode<Label>("InteractionPrompt");
+		_gameSession = GetNode<GameSession>("/root/GameSession");
 	}
 
 	public override void _PhysicsProcess(double _)
@@ -63,6 +68,34 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionJustPressed("ui_cancel"))
 		{
 			_main?.HideDialogue();
+		}
+
+		if (Input.IsActionJustPressed("debug_add_item"))
+		{
+			if (DebugItem == null)
+			{
+				GD.PushWarning("No debug item assigned.");
+			}
+			else
+			{
+				bool added = _gameSession.Inventory.TryAdd(DebugItem);
+
+				int appleCount = 0;
+
+				foreach (InventorySlot slot in _gameSession.Inventory.Slots)
+				{
+					if (slot.Item.Id == DebugItem.Id)
+					{
+						appleCount += slot.Quantity;
+					}
+				}
+
+				GD.Print(
+					added
+						? $"{DebugItem.DisplayName}: {appleCount}"
+						: "Inventory full"
+				);
+			}
 		}
 	}
 
