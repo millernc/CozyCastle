@@ -29,6 +29,20 @@ public partial class WorldItem : StaticBody2D, IInteractable
 			return;
 		}
 
+		EventBus eventBus =
+			GetNode<EventBus>("/root/EventBus");
+
+		eventBus.EmitSignal(
+			EventBus.SignalName.ItemPickedUp,
+			Item.Id,
+			Item.DisplayName,
+			1
+		);
+
+		eventBus.EmitSignal(
+			EventBus.SignalName.InventoryChanged
+		);
+
 		QueueFree();
 	}
 }

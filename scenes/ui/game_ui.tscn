@@ -33,10 +33,10 @@ text = "Hello!"
 
 [node name="InventoryPanel" type="PanelContainer" parent="." unique_id=1335881674]
 visible = false
-offset_left = 135.0
-offset_top = 100.0
-offset_right = 965.0
-offset_bottom = 535.0
+offset_left = 739.0
+offset_top = 38.0
+offset_right = 1108.0
+offset_bottom = 612.0
 
 [node name="MarginContainer" type="MarginContainer" parent="InventoryPanel" unique_id=651895768]
 layout_mode = 2
@@ -60,3 +60,34 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="ClockPanel" type="PanelContainer" parent="." unique_id=421943612]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ClockPanel" unique_id=382527188]
+layout_mode = 2
+
+[node name="ClockText" type="Label" parent="ClockPanel/MarginContainer" unique_id=1371520131]
+layout_mode = 2
+text = "Day 1 - 8:00 AM"
+
+[node name="ToastPanel" type="PanelContainer" parent="." unique_id=553439319]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -67.0
+offset_top = 39.0
+offset_bottom = 79.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ToastPanel" unique_id=1516268815]
+layout_mode = 2
+
+[node name="ToastText" type="Label" parent="ToastPanel/MarginContainer" unique_id=1419610037]
+layout_mode = 2
+text = "Apple +1"
