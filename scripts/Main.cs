@@ -11,7 +11,11 @@ public partial class Main : Node2D
 	private Tween _fadeTween;
 	private bool _isTransitioning;
 	public bool IsTransitioning => _isTransitioning;
+	private PanelContainer _inventoryPanel;
+	private VBoxContainer _itemList;
+	private GameSession _gameSession;
 
+	public bool IsInventoryOpen => _inventoryPanel.Visible;
 	public bool IsDialogueOpen => _dialogueBox.Visible;
 
 	public override void _Ready()
@@ -31,6 +35,18 @@ public partial class Main : Node2D
 		_fadeOverlay.Modulate = new Color(1, 1, 1, 0);
 		
 		FadeFromBlack();
+
+		_gameSession = GetNode<GameSession>("/root/GameSession");
+
+		_inventoryPanel =
+			GetNode<PanelContainer>("UI/InventoryPanel");
+
+		_itemList =
+			GetNode<VBoxContainer>(
+				"UI/InventoryPanel/MarginContainer/VBoxContainer/ItemList"
+			);
+
+		_inventoryPanel.Hide();
 	}
 
 	private void MovePlayerToPendingSpawn()
@@ -41,15 +57,24 @@ public partial class Main : Node2D
 		}
 
 		Player player = GetNodeOrNull<Player>("World/Player");
+		Node currentRoom = GetNodeOrNull("World/CurrentRoom");
 
-		Marker2D spawn = GetNodeOrNull<Marker2D>(
-			$"World/CurrentRoom/{TransitionData.TargetSpawnName}"
-		);
+		if (player == null || currentRoom == null)
+		{
+			GD.PushWarning("Could not find Player or CurrentRoom.");
+			return;
+		}
 
-		if (player == null || spawn == null)
+		Marker2D spawn = currentRoom.FindChild(
+			TransitionData.TargetSpawnName,
+			recursive: true,
+			owned: false
+		) as Marker2D;
+
+		if (spawn == null)
 		{
 			GD.PushWarning(
-				$"Could not find player or spawn: {TransitionData.TargetSpawnName}"
+				$"Could not find spawn: {TransitionData.TargetSpawnName}"
 			);
 			return;
 		}
@@ -172,5 +197,62 @@ public partial class Main : Node2D
 		await ToSignal(_fadeTween, Tween.SignalName.Finished);
 
 		_isTransitioning = false;
+	}
+
+	public void ToggleInventory()
+	{
+		if (IsDialogueOpen || IsTransitioning)
+		{
+			return;
+		}
+
+		if (IsInventoryOpen)
+		{
+			CloseInventory();
+		}
+		else
+		{
+			OpenInventory();
+		}
+	}
+
+	private void OpenInventory()
+	{
+		RefreshInventory();
+		_inventoryPanel.Show();
+	}
+
+	private void CloseInventory()
+	{
+		_inventoryPanel.Hide();
+	}
+
+	private void RefreshInventory()
+	{
+		foreach (Node child in _itemList.GetChildren())
+		{
+			child.QueueFree();
+		}
+
+		if (_gameSession.Inventory.Slots.Count == 0)
+		{
+			Label emptyLabel = new()
+			{
+				Text = "Your inventory is empty."
+			};
+
+			_itemList.AddChild(emptyLabel);
+			return;
+		}
+
+		foreach (InventorySlot slot in _gameSession.Inventory.Slots)
+		{
+			Label itemLabel = new()
+			{
+				Text = $"{slot.Item.DisplayName} × {slot.Quantity}"
+			};
+
+			_itemList.AddChild(itemLabel);
+		}
 	}
 }

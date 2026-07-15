@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bk3bcf3epdidi"]
+
+[ext_resource type="Script" uid="uid://mqrg6lbywgmp" path="res://scripts/Main.cs" id="1_ocj2s"]
+[ext_resource type="PackedScene" uid="uid://ot0tjw7u6ugb" path="res://scenes/characters/player.tscn" id="2_din8e"]
+[ext_resource type="Resource" uid="uid://wojufo44yrel" path="res://data/items/apple.tres" id="3_4bh5q"]
+[ext_resource type="PackedScene" uid="uid://db1xnjryx38k7" path="res://scenes/ui/game_ui.tscn" id="5_101mb"]
+
+[node name="Main" type="Node2D" unique_id=359885444]
+script = ExtResource("1_ocj2s")
+
+[node name="World" type="Node2D" parent="." unique_id=590095704]
+y_sort_enabled = true
+
+[node name="Player" parent="World" unique_id=2120755896 instance=ExtResource("2_din8e")]
+DebugItem = ExtResource("3_4bh5q")
+
+[node name="CurrentRoom" type="Node2D" parent="World" unique_id=534192886]
+y_sort_enabled = true
+
+[node name="UI" parent="." unique_id=244498107 instance=ExtResource("5_101mb")]

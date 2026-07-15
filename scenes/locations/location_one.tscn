@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://kv3bogekdrbx"]
+
+[ext_resource type="PackedScene" uid="uid://bk3bcf3epdidi" path="res://scenes/core/gameplay.tscn" id="1_17p38"]
+[ext_resource type="PackedScene" uid="uid://d158t4qbqj01t" path="res://scenes/rooms/room_one.tscn" id="2_6j8wy"]
+
+[node name="Main" unique_id=359885444 instance=ExtResource("1_17p38")]
+
+[node name="Player" parent="World" parent_id_path=PackedInt32Array(590095704) index="0" unique_id=2120755896]
+position = Vector2(410, 303)
+
+[node name="Room" parent="World/CurrentRoom" parent_id_path=PackedInt32Array(534192886) index="0" unique_id=2133616528 instance=ExtResource("2_6j8wy")]

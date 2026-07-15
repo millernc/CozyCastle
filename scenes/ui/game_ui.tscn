@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://db1xnjryx38k7"]
+
+[node name="UI" type="CanvasLayer" unique_id=244498107]
+
+[node name="DialogueBox" type="PanelContainer" parent="." unique_id=1177067706]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -351.0
+offset_top = -148.0
+offset_right = 349.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueBox" unique_id=1433809751]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueBox/MarginContainer" unique_id=192312623]
+layout_mode = 2
+
+[node name="SpeakerName" type="Label" parent="DialogueBox/MarginContainer/VBoxContainer" unique_id=1161330680]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Bob"
+
+[node name="DialogueText" type="Label" parent="DialogueBox/MarginContainer/VBoxContainer" unique_id=1133690624]
+layout_mode = 2
+text = "Hello!"
+
+[node name="InventoryPanel" type="PanelContainer" parent="." unique_id=1335881674]
+visible = false
+offset_left = 135.0
+offset_top = 100.0
+offset_right = 965.0
+offset_bottom = 535.0
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryPanel" unique_id=651895768]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/MarginContainer" unique_id=569386834]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="InventoryPanel/MarginContainer/VBoxContainer" unique_id=356948628]
+layout_mode = 2
+text = "Inventory"
+
+[node name="ItemList" type="VBoxContainer" parent="InventoryPanel/MarginContainer/VBoxContainer" unique_id=1022672726]
+layout_mode = 2
+
+[node name="FadeOverlay" type="ColorRect" parent="." unique_id=540744634]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

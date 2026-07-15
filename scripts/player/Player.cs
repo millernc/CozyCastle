@@ -9,7 +9,8 @@ public partial class Player : CharacterBody2D
 	public ItemData DebugItem { get; set; }
 
 	public FacingDirection Facing { get; private set; } = FacingDirection.Down;
-	
+    public PlayerAnimationState AnimationState { get; private set; } = PlayerAnimationState.Idle;
+
 	private Main _main;
 	private Area2D _interactionArea;
 	private Label _interactionPrompt;
@@ -32,6 +33,20 @@ public partial class Player : CharacterBody2D
 			_interactionPrompt.Hide();
 			return;
 		}
+
+		if (Input.IsActionJustPressed("inventory"))
+		{
+			_main?.ToggleInventory();
+			return;
+		}
+
+		if (_main != null && _main.IsInventoryOpen)
+		{
+			Velocity = Vector2.Zero;
+			_interactionPrompt.Hide();
+			return;
+		}
+
 		if (_main != null && _main.IsDialogueOpen)
 		{
 			Velocity = Vector2.Zero;
