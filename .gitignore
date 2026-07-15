@@ -1,3 +1,20 @@
-# Godot 4+ specific ignores
+# Godot
 .godot/
 /android/
+*.import
+*.uid
+
+# C# / Visual Studio / Mono
+bin/
+obj/
+*.csproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+desktop.ini
