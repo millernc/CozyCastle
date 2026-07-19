@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dx027kt35tfu0"]
+
+[ext_resource type="Texture2D" path="res://art/flooring/floor1.png" id="1_0orf3"]
+[ext_resource type="Texture2D" uid="uid://ct8stqlbivnpf" path="res://art/characters/bayo/bayo_front.png" id="2_v6xgl"]
+[ext_resource type="Script" path="res://scenes/prototypes/PlayerPrototype.cs" id="3_wao7g"]
+[ext_resource type="Texture2D" uid="uid://7pbcndwabedb" path="res://art/characters/bayo/bayo_back.png" id="4_a55rf"]
+[ext_resource type="Texture2D" uid="uid://cw6irq0bciyw6" path="res://art/characters/bayo/bayo_left.png" id="5_x88qd"]
+[ext_resource type="Texture2D" uid="uid://cwgfju0g3wkj6" path="res://art/characters/bayo/bayo_right.png" id="6_4fspg"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_spd7i"]
+size = Vector2(12, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnpbc"]
+shading_mode = 0
+albedo_texture = ExtResource("1_0orf3")
+uv1_scale = Vector3(10, 10, 10)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_0orf3"]
+size = Vector3(12, 2.5, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v6xgl"]
+size = Vector3(0.2, 2.5, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wao7g"]
+size = Vector3(0.2, 2.5, 10)
+
+[node name="PerspectiveTest" type="Node3D" unique_id=520219747]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1676912902]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=845144094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44362378, 0.68619967, 0.8278322)
+mesh = SubResource("PlaneMesh_spd7i")
+surface_material_override/0 = SubResource("StandardMaterial3D_dnpbc")
+
+[node name="BackWall" type="MeshInstance3D" parent="." unique_id=1863631060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.25, -4.25)
+mesh = SubResource("BoxMesh_0orf3")
+
+[node name="LeftWall" type="MeshInstance3D" parent="." unique_id=1139063653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.25, 0.75)
+mesh = SubResource("BoxMesh_v6xgl")
+
+[node name="RightWall" type="MeshInstance3D" parent="." unique_id=1840559904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65, 1.25, 0.75)
+mesh = SubResource("BoxMesh_wao7g")
+
+[node name="CameraRig" type="Node3D" parent="." unique_id=1284466541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=1044845981]
+transform = Transform3D(0.9999983, 0.0010951118, -0.0015232599, 6.695256e-05, 0.7905981, 0.6123354, 0.0018748621, -0.6123344, 0.79059666, -0.4555483, 6.0567813, 6.9787064)
+current = true
+fov = 35.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=170024635]
+sky_mode = 2
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1754126260]
+script = ExtResource("3_wao7g")
+Speed = null
+FrontTexture = ExtResource("2_v6xgl")
+BackTexture = ExtResource("4_a55rf")
+LeftTexture = ExtResource("6_4fspg")
+RightTexture = ExtResource("5_x88qd")
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D" unique_id=1149121695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.132263, 0)
+pixel_size = 0.03
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_v6xgl")
