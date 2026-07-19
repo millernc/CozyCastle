@@ -9,13 +9,14 @@ public partial class Player : CharacterBody2D
 	public ItemData DebugItem { get; set; }
 
 	public FacingDirection Facing { get; private set; } = FacingDirection.Down;
-    public PlayerAnimationState AnimationState { get; private set; } = PlayerAnimationState.Idle;
+	public PlayerAnimationState AnimationState { get; private set; } = PlayerAnimationState.Idle;
 
 	private Main _main;
 	private Area2D _interactionArea;
 	private Label _interactionPrompt;
 	private IInteractable _currentInteractable;
 	private GameSession _gameSession;
+	private AnimatedSprite2D _sprite;
 	
 	public override void _Ready()
 	{
@@ -23,10 +24,18 @@ public partial class Player : CharacterBody2D
 		_interactionArea = GetNode<Area2D>("InteractionArea");
 		_interactionPrompt = GetNode<Label>("InteractionPrompt");
 		_gameSession = GetNode<GameSession>("/root/GameSession");
+		_sprite = GetNode<AnimatedSprite2D>("Sprite");
+		UpdateSpriteDirection();
 	}
 
 	public override void _PhysicsProcess(double _)
 	{
+		if (Input.IsActionJustPressed("pause"))
+		{
+			_main?.TogglePause();
+			return;
+		}
+
 		if (_main != null && _main.IsTransitioning)
 		{
 			Velocity = Vector2.Zero;
@@ -78,11 +87,6 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionJustPressed("interact"))
 		{
 			TryInteract();
-		}
-
-		if (Input.IsActionJustPressed("ui_cancel"))
-		{
-			_main?.HideDialogue();
 		}
 
 		if (Input.IsActionJustPressed("debug_add_item"))
@@ -152,6 +156,7 @@ public partial class Player : CharacterBody2D
 				? FacingDirection.Down
 				: FacingDirection.Up;
 		}
+		UpdateSpriteDirection();
 	}
 
 	private void UpdateInteractionAreaPosition()
@@ -194,5 +199,22 @@ public partial class Player : CharacterBody2D
 		}
 
 		return nearestBody as IInteractable;
+	}
+
+	private void UpdateSpriteDirection()
+	{
+		string animationName = Facing switch
+		{
+			FacingDirection.Up => "idle_up",
+			FacingDirection.Down => "idle_down",
+			FacingDirection.Left => "idle_left",
+			FacingDirection.Right => "idle_right",
+			_ => "idle_down"
+		};
+
+		if (_sprite.Animation != animationName)
+		{
+			_sprite.Play(animationName);
+		}
 	}
 }

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d158t4qbqj01t" path="res://scenes/rooms/room_one.tscn" id="2_6j8wy"]
 
 [node name="Main" unique_id=359885444 instance=ExtResource("1_17p38")]
+process_mode = 0
 
 [node name="Player" parent="World" parent_id_path=PackedInt32Array(590095704) index="0" unique_id=2120755896]
 position = Vector2(410, 303)
