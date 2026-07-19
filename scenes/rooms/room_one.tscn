@@ -6,9 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://cvm4hmchn01dq" path="res://scenes/characters/npc.tscn" id="4_lovjb"]
 [ext_resource type="PackedScene" uid="uid://cvekvdfo1fi0f" path="res://scenes/items/world_item.tscn" id="5_knmv3"]
 [ext_resource type="Resource" uid="uid://wojufo44yrel" path="res://data/items/apple.tres" id="6_f6n44"]
+[ext_resource type="Texture2D" uid="uid://cwopgi2pe8y3g" path="res://art/flooring/floor1.png" id="7_sk8wl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spd7i"]
 size = Vector2(599.5, 100.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j55qb"]
+texture = ExtResource("7_sk8wl")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_spd7i"]
+sources/0 = SubResource("TileSetAtlasSource_j55qb")
 
 [node name="Room" type="Node2D" unique_id=2133616528]
 y_sort_enabled = true
@@ -64,3 +73,6 @@ position = Vector2(320, 288)
 [node name="Apple" parent="SortableObjects" unique_id=1000495308 instance=ExtResource("5_knmv3")]
 position = Vector2(320, 384)
 Item = ExtResource("6_f6n44")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=627307012]
+tile_set = SubResource("TileSet_spd7i")

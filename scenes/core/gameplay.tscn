@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://db1xnjryx38k7" path="res://scenes/ui/game_ui.tscn" id="5_101mb"]
 
 [node name="Main" type="Node2D" unique_id=359885444]
+process_mode = 2
 script = ExtResource("1_ocj2s")
 
 [node name="World" type="Node2D" parent="." unique_id=590095704]
