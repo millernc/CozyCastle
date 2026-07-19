@@ -30,6 +30,12 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double _)
 	{
+		if (Input.IsActionJustPressed("pause"))
+		{
+			_main?.TogglePause();
+			return;
+		}
+
 		if (_main != null && _main.IsTransitioning)
 		{
 			Velocity = Vector2.Zero;
@@ -81,11 +87,6 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionJustPressed("interact"))
 		{
 			TryInteract();
-		}
-
-		if (Input.IsActionJustPressed("ui_cancel"))
-		{
-			_main?.HideDialogue();
 		}
 
 		if (Input.IsActionJustPressed("debug_add_item"))

@@ -19,9 +19,13 @@ public partial class Main : Node2D
 	private PanelContainer _toastPanel;
 	private Label _toastText;
 	private Tween _toastTween;
+	private ColorRect _pauseOverlay;
+	private Button _resumeButton;
+	private Button _quitButton;
 
 	public bool IsInventoryOpen => _inventoryPanel.Visible;
 	public bool IsDialogueOpen => _dialogueBox.Visible;
+	public bool IsPaused => GetTree().Paused;
 
 	public override void _Ready()
 	{
@@ -75,6 +79,23 @@ public partial class Main : Node2D
 		);
 
 		_toastPanel.Hide();
+
+		_pauseOverlay = GetNode<ColorRect>("UI/PauseOverlay");
+
+		_resumeButton = GetNode<Button>(
+			"UI/PauseOverlay/CenterContainer/PanelContainer/" +
+			"MarginContainer/VBoxContainer/ResumeButton"
+		);
+
+		_quitButton = GetNode<Button>(
+			"UI/PauseOverlay/CenterContainer/PanelContainer/" +
+			"MarginContainer/VBoxContainer/QuitButton"
+		);
+
+		_resumeButton.Pressed += ResumeGame;
+		_quitButton.Pressed += QuitGame;
+
+		_pauseOverlay.Hide();
 	}
 
 	private void MovePlayerToPendingSpawn()
@@ -317,6 +338,16 @@ public partial class Main : Node2D
 		}
 
 		_eventBus.ItemPickedUp -= OnItemPickedUp;
+
+		if (_resumeButton != null)
+		{
+			_resumeButton.Pressed -= ResumeGame;
+		}
+
+		if (_quitButton != null)
+		{
+			_quitButton.Pressed -= QuitGame;
+		}
 	}
 
 	private void OnInventoryChanged()
@@ -368,5 +399,40 @@ public partial class Main : Node2D
 		);
 
 		_toastPanel.Hide();
+	}
+
+	public void TogglePause()
+	{
+		if (IsTransitioning)
+		{
+			return;
+		}
+
+		if (GetTree().Paused)
+		{
+			ResumeGame();
+		}
+		else
+		{
+			PauseGame();
+		}
+	}
+
+	private void PauseGame()
+	{
+		GetTree().Paused = true;
+		_pauseOverlay.Show();
+		_resumeButton.GrabFocus();
+	}
+
+	private void ResumeGame()
+	{
+		_pauseOverlay.Hide();
+		GetTree().Paused = false;
+	}
+
+	private void QuitGame()
+	{
+		GetTree().Quit();
 	}
 }
