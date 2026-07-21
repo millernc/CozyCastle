@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bwqm2a2nl3y4k"]
+
+[ext_resource type="PackedScene" uid="uid://bhxicxclmhhty" path="res://scenes/items/tv.tscn" id="1_djlmq"]
+
+[node name="TvProto" type="StaticBody3D" unique_id=1687272159]
+
+[node name="tv" parent="." unique_id=2124780784 instance=ExtResource("1_djlmq")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

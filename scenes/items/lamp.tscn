@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bwfu6x1hupdn5"]
+
+[ext_resource type="PackedScene" uid="uid://bd1larml55gi5" path="res://art/furniture/lamp.glb" id="1_xpt0o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1u640"]
+albedo_color = Color(0.5738746, 0.13443366, 4.813075e-08, 1)
+
+[node name="lamp" unique_id=2074449811 instance=ExtResource("1_xpt0o")]
+
+[node name="Cube" parent="." index="0" unique_id=2067976293]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_1u640")

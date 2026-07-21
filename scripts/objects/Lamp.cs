@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Lamp : StaticBody2D, IInteractable
+public partial class LampT : StaticBody2D, IInteractable
 {
 	private PointLight2D _light;
 

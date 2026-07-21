@@ -1,31 +1,60 @@
 [gd_scene format=3 uid="uid://dx027kt35tfu0"]
 
-[ext_resource type="Texture2D" path="res://art/flooring/floor1.png" id="1_0orf3"]
+[ext_resource type="Texture2D" uid="uid://cwopgi2pe8y3g" path="res://art/flooring/floor1.png" id="1_0orf3"]
+[ext_resource type="PackedScene" uid="uid://bwqm2a2nl3y4k" path="res://scenes/objects/tv_proto.tscn" id="1_3i1id"]
+[ext_resource type="PackedScene" uid="uid://c0yr38yxxayit" path="res://scenes/objects/lamp_proto.tscn" id="1_4fspg"]
 [ext_resource type="Texture2D" uid="uid://ct8stqlbivnpf" path="res://art/characters/bayo/bayo_front.png" id="2_v6xgl"]
-[ext_resource type="Script" path="res://scenes/prototypes/PlayerPrototype.cs" id="3_wao7g"]
+[ext_resource type="Texture2D" uid="uid://clvkk8mf07l0l" path="res://art/walls/wall1.png" id="2_x88qd"]
+[ext_resource type="Script" uid="uid://drllrb8yg038u" path="res://scripts/player/PlayerPrototype.cs" id="3_wao7g"]
 [ext_resource type="Texture2D" uid="uid://7pbcndwabedb" path="res://art/characters/bayo/bayo_back.png" id="4_a55rf"]
 [ext_resource type="Texture2D" uid="uid://cw6irq0bciyw6" path="res://art/characters/bayo/bayo_left.png" id="5_x88qd"]
 [ext_resource type="Texture2D" uid="uid://cwgfju0g3wkj6" path="res://art/characters/bayo/bayo_right.png" id="6_4fspg"]
+[ext_resource type="PackedScene" uid="uid://db1xnjryx38k7" path="res://scenes/ui/game_ui.tscn" id="9_rhfw6"]
+[ext_resource type="PackedScene" uid="uid://72c1rookaxcl" path="res://scenes/objects/table_proto.tscn" id="10_0jfrl"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_spd7i"]
 size = Vector2(12, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnpbc"]
-shading_mode = 0
 albedo_texture = ExtResource("1_0orf3")
-uv1_scale = Vector3(10, 10, 10)
+uv1_scale = Vector3(36, 36, 36)
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_0orf3"]
 size = Vector3(12, 2.5, 0.2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgeg1"]
+albedo_texture = ExtResource("2_x88qd")
+uv1_scale = Vector3(12, 12, 12)
+texture_filter = 0
+
 [sub_resource type="BoxMesh" id="BoxMesh_v6xgl"]
 size = Vector3(0.2, 2.5, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emrug"]
+albedo_texture = ExtResource("2_x88qd")
+uv1_scale = Vector3(12, 12, 12)
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_wao7g"]
 size = Vector3(0.2, 2.5, 10)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4fspg"]
+albedo_texture = ExtResource("2_x88qd")
+uv1_scale = Vector3(12, 12, 12)
+texture_filter = 0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_spd7i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_spd7i"]
+
 [node name="PerspectiveTest" type="Node3D" unique_id=520219747]
+
+[node name="TvProto" parent="." unique_id=1687272159 instance=ExtResource("1_3i1id")]
+transform = Transform3D(0.035080105, 0, -0.9993845, 0, 1, 0, 0.9993845, 0, 0.035080105, 1.9166052, 0.7583246, 2.1531515)
+
+[node name="LampProto" parent="." unique_id=858116654 instance=ExtResource("1_4fspg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5418986, 0.7454443, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1676912902]
 
@@ -37,27 +66,28 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dnpbc")
 [node name="BackWall" type="MeshInstance3D" parent="." unique_id=1863631060]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.25, -4.25)
 mesh = SubResource("BoxMesh_0orf3")
+surface_material_override/0 = SubResource("StandardMaterial3D_tgeg1")
 
 [node name="LeftWall" type="MeshInstance3D" parent="." unique_id=1139063653]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.25, 0.75)
 mesh = SubResource("BoxMesh_v6xgl")
+surface_material_override/0 = SubResource("StandardMaterial3D_emrug")
 
 [node name="RightWall" type="MeshInstance3D" parent="." unique_id=1840559904]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65, 1.25, 0.75)
 mesh = SubResource("BoxMesh_wao7g")
+surface_material_override/0 = SubResource("StandardMaterial3D_4fspg")
 
 [node name="CameraRig" type="Node3D" parent="." unique_id=1284466541]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=1044845981]
-transform = Transform3D(0.9999983, 0.0010951118, -0.0015232599, 6.695256e-05, 0.7905981, 0.6123354, 0.0018748621, -0.6123344, 0.79059666, -0.4555483, 6.0567813, 6.9787064)
+transform = Transform3D(1, 0, 0, 0, 0.790155, 0.61290705, 0, -0.612907, 0.79015505, -0.4555483, 6.0567813, 6.9787064)
 current = true
 fov = 35.0
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=170024635]
-sky_mode = 2
-
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1754126260]
+collision_mask = 3
 script = ExtResource("3_wao7g")
 FrontTexture = ExtResource("2_v6xgl")
 BackTexture = ExtResource("4_a55rf")
@@ -67,6 +97,28 @@ RightTexture = ExtResource("5_x88qd")
 [node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D" unique_id=1149121695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.132263, 0)
 pixel_size = 0.03
-billboard = 2
+billboard = 1
 texture_filter = 0
 texture = ExtResource("2_v6xgl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=319531188]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 1.1090474, 0)
+shape = SubResource("CapsuleShape3D_spd7i")
+
+[node name="InteractionArea" type="Area3D" parent="CharacterBody3D" unique_id=1283312707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.158, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractionArea" unique_id=239915111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.157659, 0)
+shape = SubResource("SphereShape3D_spd7i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=837956989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.263936, 0)
+light_color = Color(0.991227, 1, 0.81442064, 1)
+light_energy = 0.842
+omni_range = 16.215
+
+[node name="UI" parent="." unique_id=244498107 instance=ExtResource("9_rhfw6")]
+
+[node name="TableProto" parent="." unique_id=53007566 instance=ExtResource("10_0jfrl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9571562, 0.687366, 2.2854362)

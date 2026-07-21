@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bhxicxclmhhty"]
+
+[ext_resource type="PackedScene" uid="uid://gfws5mxintp0" path="res://art/furniture/tv.glb" id="1_1f2mm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2nos3"]
+vertex_color_use_as_albedo = true
+
+[node name="tv" unique_id=2124780784 instance=ExtResource("1_1f2mm")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+
+[node name="Cube" parent="." index="0" unique_id=1543494546]
+surface_material_override/0 = SubResource("StandardMaterial3D_2nos3")
